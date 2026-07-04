@@ -1,0 +1,11 @@
+1. How does Kubernetes ensure high availability compared to traditional deployment?
+Traditional deployments often rely on manual intervention if a server crashes, leading to downtime. Kubernetes ensures high availability through a control plane that constantly monitors the state of your application. If a node or pod fails, Kubernetes automatically detects this and reschedules the containers on healthy nodes, ensuring the desired number of instances is always running without human intervention.
+
+2. Explain the relationship between Pods, ReplicaSets, and Deployments.
+A Pod is the smallest deployable unit in Kubernetes, typically hosting a single container. A ReplicaSet ensures that a specified number of identical Pod replicas are running at any given time. A Deployment is a higher-level abstraction that manages ReplicaSets, providing declarative updates, easy scaling, and the ability to seamlessly roll out or roll back to previous versions.
+
+3. Why are Services required in Kubernetes?
+Pods are ephemeral; they are frequently created and destroyed, meaning their IP addresses change constantly. A Service provides a stable, permanent IP address and DNS name to access a group of underlying Pods. It acts as an internal load balancer, ensuring that traffic is reliably routed to healthy Pods even as the individual Pods behind the scenes are replaced.
+
+4. Difference between ConfigMaps and Secrets with a practical example.
+Both decouple configuration from your container images, but they handle data differently. ConfigMaps store non-sensitive plain-text configuration data, like setting APP_ENV=development or a frontend URL. Secrets are designed for sensitive information, like a database password (DB_PASSWORD=supersecret) or TLS certificates; they are base64 encoded and can be encrypted at rest in the cluster for better security.
