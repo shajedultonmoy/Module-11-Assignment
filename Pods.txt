@@ -1,0 +1,11 @@
+# Running Pods:
+ubuntu@ip-10-0-11-151:~/Module-11-Assignment$ kubectl get pods
+NAME                                 READY   STATUS    RESTARTS   AGE
+static-web-deploy-86754bdb65-ks9ct   1/1     Running   0          5m45s
+static-web-deploy-86754bdb65-qc8xb   1/1     Running   0          8m48s
+static-web-deploy-86754bdb65-wcggd   1/1     Running   0          8m47s
+static-web-deploy-86754bdb65-wnc9q   1/1     Running   0          8m47s
+ubuntu@ip-10-0-11-151:~/Module-11-Assignment$ kubectl get pods -n dev-env
+NAME                                 READY   STATUS    RESTARTS   AGE
+static-web-deploy-7bd589f474-8zb5q   1/1     Running   0          24s
+static-web-deploy-7bd589f474-bzbv4   1/1     Running   0          24s

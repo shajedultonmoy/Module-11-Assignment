@@ -1,0 +1,44 @@
+# app.yaml File:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-web-deploy
+  labels:
+    app: static-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: static-web
+  template:
+    metadata:
+      labels:
+        app: static-web
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.24  # Pinning version for rolling updates later
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: web-content
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: web-content
+        hostPath:
+          path: /home/ubuntu/Module-11-Assignment # Path to your cloned repo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-web-service
+spec:
+  type: NodePort
+  selector:
+    app: static-web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+      
